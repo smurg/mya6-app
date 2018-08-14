@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'variables';
+//the whole bootstrap package
+@import "~bootstrap/scss/bootstrap.scss";
+// importing it here It enables us to override any Sass variable used by the Bootstrap styles definitions.
+
+// we can also import just bootstrap reboot and grid to easily build responsive layouts, if we don't need to use everything. 
+// @import '~bootstrap/scss/bootstrap-reboot';
+// @import '~bootstrap/scss/bootstrap-grid';
+
