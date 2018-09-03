@@ -13,8 +13,9 @@ export class ElementsComponent implements OnInit {
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    // any code executed here will be called on page load
-    this.data.getPosts().subscribe( data => this.posts$ = data ); // we subscribe to the api call, asi it's async
+    // any code executed here will be called when this component loads
+    this.data.getPosts().subscribe( data => this.posts$ = data );
+    // we subscribe to the api call, asi it's async
     // it will execute the callback when getPosts return data.
   }
 

@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { HomeComponent } from './home/home.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     ElementsComponent,
     ElementDetailComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
