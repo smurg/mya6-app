@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
-import { Observable } from 'rxjs';
+import { DataService } from '../shared/data.service';
+import { ActivatedRoute } from '@angular/router';
+import { IPost } from '../shared/element.model';
 
 @Component({
   selector: 'app-elements',
@@ -8,15 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./elements.component.scss']
 })
 export class ElementsComponent implements OnInit {
-  posts$: Object; // property to hold the returned data from the api
+  posts$: IPost[]; // property to hold the returned data from the api
 
-  constructor(private data: DataService) { }
+  // shorthand to create private properties that will be initialized by the constructor
+  constructor(private data: DataService, private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    // any code executed here will be called when this component loads
-    this.data.getPosts().subscribe( data => this.posts$ = data );
-    // we subscribe to the api call, asi it's async
-    // it will execute the callback when getPosts return data.
+  ngOnInit() { // any code executed here will be called when this component loads
+    this.route.data.subscribe((myData) => {
+      this.posts$ = myData.posts;
+    });
+    // we subscribe to the route data, to receive the data from the route resolver
   }
 
 }

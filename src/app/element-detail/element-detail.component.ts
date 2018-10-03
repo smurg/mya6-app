@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DataService } from '../data.service';
+import { DataService } from '../shared/data.service';
+import { IPost, IComment } from '../shared/element.model';
 
 @Component({
   selector: 'app-element-detail',
@@ -9,13 +10,16 @@ import { DataService } from '../data.service';
 })
 export class ElementDetailComponent implements OnInit {
 
-  userId$: String;
+  element: IPost;
+  comments: IComment;
 
-  constructor(private route: ActivatedRoute, private data: DataService) {
-    this.route.params.subscribe( params => this.userId$ = params.id );
-  }
+  constructor(private route: ActivatedRoute, private data: DataService) { }
 
   ngOnInit() {
+    this.route.data.subscribe((myData) => {
+      this.element = myData.post;
+      this.comments = myData.comments;
+    });
   }
 
 }

@@ -1,3 +1,4 @@
+import { PostResolve, CommentsResolve } from './element-detail/element-resolver';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -5,15 +6,23 @@ import { ElementsComponent } from './elements/elements.component';
 import { HomeComponent } from './home/home.component';
 import { ElementDetailComponent } from './element-detail/element-detail.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { PostsResolve } from './elements/elements-resolver';
 
 const routes: Routes = [
   {
     path: 'elements',
-    component: ElementsComponent
+    component: ElementsComponent,
+    resolve: { // Angular's router supports as many resolvers per route as you want.
+      posts: PostsResolve
+    }
   },
   {
     path: 'element/:id',
-    component: ElementDetailComponent
+    component: ElementDetailComponent,
+    resolve: { // Angular's router supports as many resolvers per route as you want.
+      post: PostResolve,
+      comments: CommentsResolve
+    } // The route won't be activated until ALL resolves are complete/fulfilled.
   },
   { path: '',
     component: HomeComponent,
